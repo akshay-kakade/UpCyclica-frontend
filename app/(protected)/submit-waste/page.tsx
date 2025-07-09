@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+
 import Image from "next/image";
 import { useState } from "react";
 import {
@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Leaf, DollarSign, Brain, Recycle } from "lucide-react";
 import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
 
 
 const CLOUDINARY_UPLOAD_PRESET = "wasteUploads";
@@ -24,8 +25,9 @@ export default function SubmitWastePage() {
   const [loading, setLoading] = useState(false);
   //eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [result, setResult] = useState<any>(null);
-  const { user } = useUser();
-  const userId = user?.id || "mock_user";
+
+
+  const { getToken } = useAuth(); 
 
   const autofillLocation = () => {
     if (!navigator.geolocation) {
@@ -79,21 +81,24 @@ export default function SubmitWastePage() {
     setResult(classification);
 
     // Save to DB
-    await fetch(`${API_URL}/submit`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        user_id: userId,
-        description: formData.get("description"),
-        file_url: fileUrl,
-        ...classification,
-        waste_type: formData.get("waste_type"),
-        source: formData.get("source"),
-        batch_weight: parseFloat(formData.get("batch_weight") as string),
-        notes: formData.get("notes"),
-        location: formData.get("location"),
-      }),
-    });
+  const token = await getToken();
+
+await fetch(`${API_URL}/submit`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`, // ⬅️ Auth header added
+  },
+  body: JSON.stringify({
+    description: formData.get("description"),
+    file_url: fileUrl,
+    waste_type: formData.get("waste_type"),
+    source: formData.get("source"),
+    batch_weight: parseFloat(formData.get("batch_weight") as string),
+    notes: formData.get("notes"),
+    location: formData.get("location"),
+  }),
+});
 
     setLoading(false);
   }
@@ -155,7 +160,7 @@ export default function SubmitWastePage() {
       </form>
 
      {result && (
-  <div className="mt-8 p-4 border border-green-300 bg-green-50 rounded-md shadow-sm space-y-2">
+  <div className="mt-8 p-4 border text-black border-green-300 bg-green-50 rounded-md shadow-sm space-y-2">
     <h2 className="font-semibold text-xl flex items-center gap-2">
       <Brain className="w-5 h-5 text-green-700" /> Classification Result
     </h2>
