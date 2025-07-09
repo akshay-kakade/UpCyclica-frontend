@@ -60,7 +60,39 @@ export default function DashboardPage() {
       <h1 className="text-2xl font-bold mb-6">📊 Your Submissions</h1>
 
       {loading ? (
-        <p>Loading...</p>
+
+        <div className="flex flex-col items-center justify-center gap-4 p-6 text-center text-gray-400 animate-pulse">
+      <div className="flex items-center gap-2">
+    <svg
+      className="w-20 h-20 animate-spin text-green-500"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v8z"
+      ></path>
+    </svg>
+    <span className="text-lg font-medium tracking-wide">Loading...</span>
+  </div>
+
+  <div className="flex gap-1">
+    <div className="h-2 w-2 bg-green-400 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+    <div className="h-2 w-2 bg-green-400 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+    <div className="h-2 w-2 bg-green-400 rounded-full animate-bounce"></div>
+  </div>
+</div>
+
       ) : data.length === 0 ? (
         <p>No submissions yet.</p>
       ) : (
