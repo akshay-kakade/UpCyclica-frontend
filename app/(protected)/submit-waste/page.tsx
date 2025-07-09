@@ -179,7 +179,7 @@ export default function SubmitWastePage() {
 )}
 <Link
   href="/dashboard"
-  className="inline-block mt-4 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition"
+  className="inline-block mt-4 px-4 py-2 btn text-dark rounded btn-primary transition"
 >
   📊 View in Dashboard
 </Link>

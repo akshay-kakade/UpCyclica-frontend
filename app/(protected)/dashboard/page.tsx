@@ -90,11 +90,12 @@ export default function DashboardPage() {
                   </td>
                   <td className="p-3">
                     <button
-                      onClick={() => handleDelete(d.id)}
-                      className="text-red-500 hover:underline"
-                    >
-                      Delete
-                    </button>
+                         onClick={() => handleDelete(d.id)}
+                         className="btn bg-red-600/90 text-white hover:bg-red-900 hover:shadow-red-500/40 shadow-md px-4 py-2 cursor-pointer rounded-md transition duration-200"
+                       >
+                         Delete
+                       </button>
+
                   </td>
                 </tr>
               ))}

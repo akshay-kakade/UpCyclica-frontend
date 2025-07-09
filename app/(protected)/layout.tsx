@@ -7,5 +7,7 @@ export default async function ProtectedLayout({ children }: PropsWithChildren) {
   const { userId } = await auth();
   if (!userId) redirect("/sign-in");
 
-  return <>{children}</>;
+  return <>
+  
+  {children}</>;
 }
