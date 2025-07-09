@@ -147,8 +147,8 @@ export default function SubmitWastePage() {
           <input 
             required 
             name="proof" 
-            placeholder="Upload Proof (Image/PDF)"
             type="file" 
+            placeholder="Upload Proof"
             accept="image/*,.pdf" 
             className="grow pt-2 file-input file-input-sm" 
           />
@@ -222,7 +222,7 @@ export default function SubmitWastePage() {
       </form>
 
       {result && (
-        <div className="mt-8 p-4 border border-green-300 bg-green-50 rounded-md shadow-sm space-y-2">
+        <div className="mt-8 p-4 text-black border border-green-300 bg-green-50 rounded-md shadow-sm space-y-2">
           <h2 className="font-semibold text-xl flex items-center gap-2">
             <Brain className="w-5 h-5 text-green-700" /> 
             Classification Result
