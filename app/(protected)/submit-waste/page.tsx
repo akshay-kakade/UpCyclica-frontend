@@ -155,7 +155,7 @@ export default function SubmitWastePage() {
       </form>
 
      {result && (
-  <div className="mt-8 p-4 border border-green-300 bg-green-50 rounded-md shadow-sm space-y-2">
+  <div className="mt-8 p-4 text-black border border-green-300 bg-green-50 rounded-md shadow-sm space-y-2">
     <h2 className="font-semibold text-xl flex items-center gap-2">
       <Brain className="w-5 h-5 text-green-700" /> Classification Result
     </h2>
